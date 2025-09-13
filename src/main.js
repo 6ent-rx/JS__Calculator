@@ -35,7 +35,19 @@ btn.forEach(el => {
                 display[0].value = eval(display[0].value)
             }
 
-        } else if (isNaN(value)) {
+        } else if (value == '.') {
+            if (isNaN(display[0].value.slice(-1))) {
+                display[0].value = display[0].value.slice(0, -1) + value
+            } else {
+                let parts = display[0].value.split(/[\+\-\*\/%]/); // ready regular ['10.5', 15]
+                let last = parts[parts.length - 1]
+                if (!last.includes(".")) {
+                    display[0].value += value
+                }
+
+            }
+        }
+        else if (isNaN(value)) {
             if (isNaN(display[0].value.slice(-1))) {
                 display[0].value = display[0].value.slice(0, -1) + value
             } else {
